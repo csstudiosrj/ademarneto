@@ -31,9 +31,18 @@
                     colors: { 
                         brand: {
                             blue: '#2563EB', /* Azul da Logo */
-                            dark: '#111827', /* Fundo Escuro */
+                            dark: '#0B1120', /* Fundo Escuro Profundo */
                             navy: '#1E293B', /* Azul Marinho da Logo */
                             light: '#F8FAFC' /* Fundo Claro */
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         }
                     }
                 }
@@ -61,9 +70,19 @@
 
         /* Gradiente sutil para textos de destaque */
         .text-gradient {
-            background: linear-gradient(135deg, #1E293B 0%, #2563EB 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        /* Efeito de brilho no hover dos cards */
+        .card-hover-effect {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
+            border-color: rgba(37, 99, 235, 0.3);
         }
     </style>
 </head>
@@ -78,28 +97,30 @@
             </a>
             
             <!-- Botão de Contato -->
-            <a href="https://wa.me/558398734857" target="_blank" class="hidden md:flex items-center gap-2 bg-brand-navy text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-brand-blue transition-colors shadow-lg">
+            <a href="https://wa.me/5583998734857" target="_blank" class="hidden md:flex items-center gap-2 bg-brand-navy text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-brand-blue transition-colors shadow-lg">
                 <i class="fab fa-whatsapp text-lg"></i> Fale com o Advogado
             </a>
         </div>
     </nav>
 
     <!-- Hero Section (Dobra Principal) -->
-    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 flex items-center min-h-[90vh]">
-        <!-- Imagem de Fundo com Overlay -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 flex items-center min-h-[90vh] overflow-hidden">
+        <!-- Imagem de Fundo com Overlay Dark/Blue -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2070&auto=format&fit=crop" alt="Escritório de Advocacia" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 to-brand-navy/80"></div>
+            <!-- Nova imagem: Escritório corporativo moderno, sem tons amarelos -->
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Escritório de Advocacia" class="w-full h-full object-cover scale-105 transform origin-center">
+            <!-- Overlay em gradiente profundo para dar contraste com a logo azul -->
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-navy/80"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl" data-aos="fade-up" data-aos-duration="1000">
-                <div class="inline-block bg-brand-blue/20 border border-brand-blue/30 text-brand-light px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+                <div class="inline-block bg-brand-blue/20 border border-brand-blue/30 text-blue-300 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
                     Atendimento Jurídico Especializado
                 </div>
                 
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight mb-6">
-                    Defesa Estratégica e <span class="text-brand-blue">Resultados</span> de Excelência.
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight mb-6 text-gradient">
+                    Defesa Estratégica e <span class="text-brand-blue" style="-webkit-text-fill-color: #2563EB;">Resultados</span> de Excelência.
                 </h1>
                 
                 <p class="text-lg md:text-xl text-gray-300 font-light mb-10 max-w-2xl leading-relaxed">
@@ -107,33 +128,46 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://wa.me/55SEUNUMERO" target="_blank" class="bg-brand-blue text-white px-8 py-4 rounded-lg font-bold text-center hover:bg-blue-700 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2">
+                    <a href="https://wa.me/5583998734857" target="_blank" class="bg-brand-blue text-white px-8 py-4 rounded-lg font-bold text-center hover:bg-blue-600 transition-all shadow-[0_0_25px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2">
                         <i class="fab fa-whatsapp text-xl"></i> Agendar Consulta
                     </a>
-                    <a href="#areas" class="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-lg font-medium text-center hover:bg-white/20 transition-all backdrop-blur-sm">
+                    <a href="#areas" class="bg-white/5 text-white border border-white/20 px-8 py-4 rounded-lg font-medium text-center hover:bg-white/10 transition-all backdrop-blur-sm">
                         Conhecer Áreas de Atuação
                     </a>
                 </div>
             </div>
         </div>
+        
+        <!-- Elemento decorativo de scroll -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce hidden md:block">
+            <a href="#areas" class="text-white/50 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
     </section>
 
     <!-- Indicadores de Confiança -->
-    <section class="py-10 bg-white border-b border-gray-100 relative z-20 -mt-8 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-xl">
+    <section class="py-10 bg-white border-b border-gray-100 relative z-20 -mt-12 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-2xl">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
                 <div class="p-4" data-aos="fade-up" data-aos-delay="0">
-                    <i class="fas fa-scale-balanced text-3xl text-brand-blue mb-3"></i>
+                    <div class="w-12 h-12 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-scale-balanced text-xl text-brand-blue"></i>
+                    </div>
                     <h3 class="font-bold text-brand-navy text-lg">Atuação Estratégica</h3>
                     <p class="text-sm text-gray-500 mt-2">Análise minuciosa de cada detalhe do seu processo.</p>
                 </div>
                 <div class="p-4 pt-8 md:pt-4" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-shield-halved text-3xl text-brand-blue mb-3"></i>
+                    <div class="w-12 h-12 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-halved text-xl text-brand-blue"></i>
+                    </div>
                     <h3 class="font-bold text-brand-navy text-lg">Sigilo Absoluto</h3>
                     <p class="text-sm text-gray-500 mt-2">Total confidencialidade e ética profissional.</p>
                 </div>
                 <div class="p-4 pt-8 md:pt-4" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-comments text-3xl text-brand-blue mb-3"></i>
+                    <div class="w-12 h-12 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-comments text-xl text-brand-blue"></i>
+                    </div>
                     <h3 class="font-bold text-brand-navy text-lg">Atendimento Ágil</h3>
                     <p class="text-sm text-gray-500 mt-2">Respostas rápidas e clareza em todas as etapas.</p>
                 </div>
@@ -142,74 +176,92 @@
     </section>
 
     <!-- Áreas de Atuação -->
-    <section id="areas" class="py-24 bg-brand-light">
+    <section id="areas" class="py-32 bg-brand-light">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-navy mb-4">Áreas de Atuação</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Soluções jurídicas personalizadas para pessoas físicas e jurídicas, com foco na resolução rápida e eficiente de conflitos.</p>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-brand-blue font-bold text-xs uppercase tracking-widest mb-2 block">Especialidades</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-navy mb-6">Áreas de Atuação</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto leading-relaxed">Soluções jurídicas personalizadas para pessoas físicas e jurídicas, com foco na resolução rápida e eficiente de conflitos.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group" data-aos="fade-up">
-                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
-                        <i class="fas fa-gavel text-2xl text-brand-blue group-hover:text-white transition-colors"></i>
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 group card-hover-effect" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-blue-50/50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-blue transition-colors duration-500">
+                        <i class="fas fa-gavel text-2xl text-brand-blue group-hover:text-white transition-colors duration-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-navy mb-3">Direito Civil</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Contratos, responsabilidade civil, indenizações, cobranças e resolução de litígios em geral.</p>
-                    <a href="https://wa.me/55SEUNUMERO" class="text-brand-blue font-semibold text-sm hover:underline flex items-center gap-2">Falar sobre meu caso <i class="fas fa-arrow-right text-xs"></i></a>
+                    <h3 class="text-2xl font-serif font-bold text-brand-navy mb-4">Direito Civil</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-8">Contratos, responsabilidade civil, indenizações, cobranças e resolução de litígios em geral.</p>
+                    <a href="https://wa.me/5583998734857" target="_blank" class="text-brand-navy font-bold text-sm group-hover:text-brand-blue transition-colors flex items-center gap-2">
+                        Analisar meu caso <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
-                        <i class="fas fa-users text-2xl text-brand-blue group-hover:text-white transition-colors"></i>
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 group card-hover-effect" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-blue-50/50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-blue transition-colors duration-500">
+                        <i class="fas fa-users text-2xl text-brand-blue group-hover:text-white transition-colors duration-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-navy mb-3">Direito de Família</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Divórcios, pensão alimentícia, guarda, inventários e planejamento sucessório com discrição.</p>
-                    <a href="https://wa.me/558398734857" class="text-brand-blue font-semibold text-sm hover:underline flex items-center gap-2">Falar sobre meu caso <i class="fas fa-arrow-right text-xs"></i></a>
+                    <h3 class="text-2xl font-serif font-bold text-brand-navy mb-4">Direito de Família</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-8">Divórcios, pensão alimentícia, guarda, inventários e planejamento sucessório com discrição.</p>
+                    <a href="https://wa.me/5583998734857" target="_blank" class="text-brand-navy font-bold text-sm group-hover:text-brand-blue transition-colors flex items-center gap-2">
+                        Analisar meu caso <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
-                        <i class="fas fa-briefcase text-2xl text-brand-blue group-hover:text-white transition-colors"></i>
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 group card-hover-effect" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-blue-50/50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-blue transition-colors duration-500">
+                        <i class="fas fa-briefcase text-2xl text-brand-blue group-hover:text-white transition-colors duration-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-navy mb-3">Direito Trabalhista</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Defesa de direitos trabalhistas, rescisões, horas extras, assédio moral e acidentes de trabalho.</p>
-                    <a href="https://wa.me/55SEUNUMERO" class="text-brand-blue font-semibold text-sm hover:underline flex items-center gap-2">Falar sobre meu caso <i class="fas fa-arrow-right text-xs"></i></a>
+                    <h3 class="text-2xl font-serif font-bold text-brand-navy mb-4">Direito Trabalhista</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-8">Defesa de direitos trabalhistas, rescisões, horas extras, assédio moral e acidentes de trabalho.</p>
+                    <a href="https://wa.me/5583998734857" target="_blank" class="text-brand-navy font-bold text-sm group-hover:text-brand-blue transition-colors flex items-center gap-2">
+                        Analisar meu caso <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sobre o Profissional -->
-    <section class="py-24 bg-white overflow-hidden">
+    <section class="py-32 bg-white overflow-hidden border-t border-gray-100">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div class="flex flex-col md:flex-row items-center gap-16 lg:gap-24">
                 
-                <!-- Imagem do Advogado -->
+                <!-- Imagem do Advogado com Efeito Float -->
                 <div class="w-full md:w-1/2 relative" data-aos="fade-right">
-                    <div class="absolute inset-0 bg-brand-blue rounded-3xl transform translate-x-4 translate-y-4 opacity-20"></div>
-                    <!-- Substitua o link abaixo pela foto real do advogado -->
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Dr. Ademar Neto" class="relative z-10 rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                    <!-- Elemento de fundo decorativo -->
+                    <div class="absolute inset-0 bg-brand-blue rounded-[2.5rem] transform translate-x-6 translate-y-6 opacity-10"></div>
+                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-60"></div>
+                    
+                    <!-- Foto do Cliente -->
+                    <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white animate-float">
+                        <img src="assets/ademar.jpg" alt="Dr. Ademar Neto" class="w-full h-[550px] object-cover object-top">
+                        
+                        <!-- Badge OAB Flutuante sobre a foto -->
+                        <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-lg border border-white/50 flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></div>
+                            <span class="font-bold text-brand-navy text-sm">OAB/PB nº 29.542</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Texto -->
                 <div class="w-full md:w-1/2" data-aos="fade-left">
-                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-navy mb-6">Dr. Ademar Neto</h2>
-                    <p class="text-brand-blue font-semibold mb-6 uppercase tracking-widest text-sm">OAB/UF XXXXX</p>
+                    <span class="text-brand-blue font-bold text-xs uppercase tracking-widest mb-2 block">O Profissional</span>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-brand-navy mb-8">Dr. Ademar Neto</h2>
                     
-                    <div class="space-y-4 text-gray-600 leading-relaxed mb-8">
+                    <div class="space-y-6 text-gray-600 leading-relaxed mb-10 text-lg font-light">
                         <p>
-                            Com uma trajetória pautada na ética e no compromisso inabalável com a justiça, o escritório Ademar Neto Advocacia destaca-se pelo atendimento humanizado e estratégias jurídicas de alta performance.
+                            Com uma trajetória pautada na ética e no compromisso inabalável com a justiça, o escritório destaca-se pelo atendimento humanizado e estratégias jurídicas de alta performance.
                         </p>
                         <p>
                             Entendemos que por trás de cada processo existe uma vida, um patrimônio ou uma empresa. Por isso, não tratamos nossos clientes como números. Oferecemos uma advocacia artesanal, onde cada caso é estudado minuciosamente para garantir a máxima proteção dos seus interesses.
                         </p>
                     </div>
 
-                    <a href="https://wa.me/558398734857" target="_blank" class="inline-flex items-center gap-2 bg-brand-navy text-white px-8 py-4 rounded-lg font-bold hover:bg-gray-800 transition-colors">
+                    <a href="https://wa.me/5583998734857" target="_blank" class="inline-flex items-center gap-3 bg-brand-navy text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-blue transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                         Falar Diretamente com o Dr. Ademar
                     </a>
                 </div>
@@ -220,34 +272,34 @@
 
     <!-- CTA Final -->
     <section class="py-24 relative bg-brand-navy overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <img src="https://images.unsplash.com/photo-1505664173691-a08d2951c502?q=80&w=2070&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover">
-        </div>
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
         <div class="container mx-auto px-6 relative z-10 text-center">
             <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Você não precisa enfrentar isso sozinho.</h2>
-            <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+            <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg font-light">
                 O tempo é um fator crucial na resolução de problemas jurídicos. Entre em contato agora mesmo para uma análise preliminar do seu caso com total sigilo.
             </p>
-            <a href="https://wa.me/558398734857" target="_blank" class="inline-flex items-center gap-3 bg-brand-blue text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-blue-600 transition-all shadow-[0_0_30px_rgba(37,99,235,0.5)] transform hover:scale-105">
+            <a href="https://wa.me/5583998734857" target="_blank" class="inline-flex items-center gap-3 bg-brand-blue text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-blue-500 transition-all shadow-[0_0_40px_rgba(37,99,235,0.4)] transform hover:scale-105">
                 <i class="fab fa-whatsapp text-2xl"></i> Solicitar Atendimento Imediato
             </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-dark pt-16 pb-8 border-t border-gray-800">
+    <footer class="bg-brand-dark pt-20 pb-10 border-t border-gray-800">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-3 gap-12 mb-12">
+            <div class="grid md:grid-cols-3 gap-12 mb-16">
                 
                 <!-- Coluna 1: Logo e Info -->
                 <div>
                     <!-- Logo versão clara (se tiver) ou a mesma com filtro -->
-                    <img src="assets/logo.png" alt="Ademar Neto Advogado" class="h-12 mb-6 brightness-0 invert">
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    <img src="assets/logo.png" alt="Ademar Neto Advogado" class="h-12 mb-6 brightness-0 invert opacity-90">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
                         Advocacia de excelência, pautada na ética, transparência e na busca incansável pelos melhores resultados para nossos clientes.
                     </p>
                     <div class="flex gap-4">
-                        <a href="https://www.instagram.com/adv.an26/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white transition-colors">
+                        <a href="https://www.instagram.com/adv.an26/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800/50 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -255,51 +307,55 @@
 
                 <!-- Coluna 2: Contato -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Contato</h4>
-                    <ul class="space-y-4 text-gray-400 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fab fa-whatsapp mt-1 text-brand-blue"></i>
-                            <span>(83) 99873-4857</span>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Contato Direto</h4>
+                    <ul class="space-y-5 text-gray-400 text-sm">
+                        <li>
+                            <a href="https://wa.me/5583998734857" target="_blank" class="flex items-center gap-3 hover:text-brand-blue transition-colors group">
+                                <div class="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
+                                    <i class="fab fa-whatsapp text-brand-blue"></i>
+                                </div>
+                                <span>(83) 99873-4857</span>
+                            </a>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-envelope mt-1 text-brand-blue"></i>
-                            <span>ademarneto16@outlook.com</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-location-dot mt-1 text-brand-blue"></i>
-                            <span>Endereço do Escritório, Número<br>Bairro, Cidade - UF</span>
+                        <li>
+                            <a href="mailto:ademarneto16@outlook.com" class="flex items-center gap-3 hover:text-brand-blue transition-colors group">
+                                <div class="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
+                                    <i class="fas fa-envelope text-brand-blue"></i>
+                                </div>
+                                <span>ademarneto16@outlook.com</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Coluna 3: Horário -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Atendimento</h4>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Atendimento</h4>
                     <ul class="space-y-4 text-gray-400 text-sm">
-                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                        <li class="flex justify-between border-b border-gray-800/50 pb-3">
                             <span>Segunda a Sexta</span>
-                            <span>08:00 - 18:00</span>
+                            <span class="text-white">08:00 - 18:00</span>
                         </li>
-                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                        <li class="flex justify-between border-b border-gray-800/50 pb-3">
                             <span>Sábado e Domingo</span>
-                            <span>Fechado</span>
+                            <span class="text-gray-500">Fechado</span>
                         </li>
-                        <li class="mt-4 text-brand-blue font-semibold">
-                            *Plantão para emergências jurídicas via WhatsApp.
+                        <li class="mt-4 text-brand-blue font-semibold text-xs uppercase tracking-wider">
+                            <i class="fas fa-circle text-[8px] mr-1 animate-pulse"></i> Plantão Jurídico via WhatsApp
                         </li>
                     </ul>
                 </div>
             </div>
 
             <!-- Assinatura CS Studios -->
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="border-t border-gray-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-gray-500 text-xs text-center md:text-left">
-                    &copy; 2026 Ademar Neto Advocacia. Todos os direitos reservados. OAB/UF XXXXX.
+                    &copy; 2026 Ademar Neto Advocacia. Todos os direitos reservados. OAB/PB nº 29.542.
                 </p>
                 
                 <!-- Assinatura da Software House -->
                 <a href="https://csstudios.site" target="_blank" class="flex items-center gap-2 text-gray-600 hover:text-gray-400 transition-colors group">
-                    <span class="text-[10px] uppercase tracking-widest">Desenvolvido por</span>
+                    <span class="text-[10px] uppercase tracking-widest">Engenharia Digital por</span>
                     <span class="font-mono font-bold text-sm text-white tracking-tighter group-hover:text-brand-blue transition-colors">CS_</span>
                 </a>
             </div>
